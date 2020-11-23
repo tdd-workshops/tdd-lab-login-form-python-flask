@@ -36,7 +36,7 @@ Open this folder in your terminal app. And run these commands in the terminal.
     pipenv install -r requirements.txt
     ```
     
-    You can open this url in your browser to view the app: <http://localhost:3000>
+    You can open this url in your browser to view the app: <http://localhost:5000>
     
 3. To run the test:
     
