@@ -1,0 +1,8 @@
+.idea/.gitignore
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/tdd-lab-login-form-flask.iml
+Pipfile.lock
+__pycache__/
+tests/__pycache__/
