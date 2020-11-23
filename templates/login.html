@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 
 {% block header %}
+<<<<<<< HEAD
     <h1>{% block title %}Login{% endblock %}</h1>
+=======
+    <h2>{% block title %}Log In{% endblock %}</h2>
+>>>>>>> cff05ea6ff30ccadd28c08bcdb1426fd9869bdc2
 {% endblock %}
 
 {% block content %}
 
-    <form method="post">
+    <form method="post" action="/users">
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" class="form-control" name="email" id="email" aria-describedby="usernameHelp"
