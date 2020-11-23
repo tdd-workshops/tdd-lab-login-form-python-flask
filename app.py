@@ -6,16 +6,12 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def home_page(title='Home Page'):
-    return render_template('home.html', title=title)
-
+def home_page(title='Login Demo'):
+    return render_template('login.html', title=title)
 
 @app.route('/users', methods=['GET', 'POST'])
-def login_page(title='Login Page'):
+def login_page(title='Login Demo'):
     error = ''
-
-    if request.method == 'GET':
-        return render_template('login.html', error=error, title=title)
 
     if request.method == 'POST':
         if request.form['email'] == 'demo@example.com' and request.form['password'] == 'demo1234':
@@ -30,7 +26,7 @@ def login_page(title='Login Page'):
 def logout_page(title='Logout Page'):
     error = ''
 
-    return render_template('logout.html', error=error, title=title)
+    return redirect('/')
 
 
 @app.route('/users/welcome')
