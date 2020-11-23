@@ -91,20 +91,24 @@ Open this folder in your terminal app. And run these commands in the terminal.
 
     This is the home page. The login form is also here.
 
-2. `GET /users`
+2. `GET /signup`
+
+    This is the registration form.
+
+3. `POST /signup`
+
+    Sign up for new user account.
+
+4. `POST /users`
+
     This is how you login to the app. You will need to login with `email` and `password`.
 
     The default email is `demo@example.com` and password is `demo1234`.
 
-2. `POST /users` 
-    The backend API for user authentication of user credentials 
-
-    The default email is `demo@example.com` and password is `demo1234`.
-
-3. `GET /users/welcome`
+5. `GET /users/welcome`
 
     Landing page after you have successfully logged in with the correct credentials.
 
-4. `GET /users/logout`
+6. `GET /users/logout`
 
     URL for logging out of the application.
