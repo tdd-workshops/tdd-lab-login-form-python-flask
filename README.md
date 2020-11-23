@@ -53,8 +53,8 @@ Open this folder in your terminal app. And run these commands in the terminal.
     pytest -m smoke
     ```
 
-    * `vm` - Displays specific test cases under custom marker in verbose mode. The default smoke requires your flask app
-     to be running for it to work. 
+    * `vm` - Displays specific test cases under custom marker in verbose mode. The default `smoke` test requires your 
+    flask app to be running for the smoke test to working. 
 
     ```
     pytest -vm smoke
