@@ -1,6 +1,8 @@
 from flask import Flask, redirect
 from flask import request
 from flask import render_template
+import csv
+import os
 
 app = Flask(__name__)
 
@@ -17,7 +19,7 @@ def login_page(title='Login Page'):
     if request.method == 'GET':
         return render_template('login.html', error=error, title=title)
 
-    if request.method == 'POST':
+    elif request.method == 'POST':
         if request.form['email'] == 'demo@example.com' and request.form['password'] == 'demo1234':
             return redirect('/users/welcome')
 
@@ -31,6 +33,29 @@ def logout_page(title='Logout Page'):
     error = ''
 
     return render_template('logout.html', error=error, title=title)
+
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup_page(title='Signup Page'):
+    error = ''
+    root = os.path.dirname(os.path.realpath(__file__))
+    directory = 'db'
+    filename = 'user_db.csv'
+    user_data = {}
+
+    if request.method == 'GET':
+        return render_template('signup.html', error=error, title=title)
+
+    elif request.method == 'POST':
+        if request.form['email'] != '' and request.form['username'] != '' and \
+                request.form['password'] == request.form['password_confirm']:
+            user_data = dict(request.form)
+
+            with open(f'{root}/{directory}/{filename}', mode='w') as employee_file:
+                employee_writer = csv.writer(employee_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                employee_writer.writerow([user_data['username'], user_data['email'], user_data['password']])
+
+                return redirect('/users/welcome')
 
 
 @app.route('/users/welcome')

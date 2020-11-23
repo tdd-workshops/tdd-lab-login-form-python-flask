@@ -6,3 +6,5 @@
 Pipfile.lock
 __pycache__/
 tests/__pycache__/
+.idea/workspace.xml
+.idea/vcs.xml
