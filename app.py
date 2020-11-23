@@ -55,6 +55,9 @@ def signup_page(title='Signup Page'):
                 employee_writer.writerow([user_data['username'], user_data['email'], user_data['password']])
 
                 return redirect('/users/welcome')
+        else:
+            error = 'Invalid user registration'
+            return render_template('404.html', error=error, title=title)
 
 
 @app.route('/users/welcome')
