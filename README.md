@@ -36,7 +36,7 @@ Acceptance Criteria:
 
 Open this folder in your terminal app. And run these commands in the terminal.
 
-1. Create virtual environment 
+1. Create virtual environment
 
     ```
     pipenv shell
@@ -47,35 +47,21 @@ Open this folder in your terminal app. And run these commands in the terminal.
     ```
     pipenv install -r requirements.txt
     ```
-    
+
     You can open this url in your browser to view the app: <http://localhost:5000>
-    
+
 3. To run the test:
-    
+
     Here are the options for `pytest`
     * `v` - The verbose view of test case
     ```
-    pytest -v
-    ```
-    
-    * `m` - The label that is given for [custom marker](https://docs.pytest.org/en/stable/example/markers.html) to 
-    run the specific tests. 
-
-    ```
-    pytest -m smoke
+    python -m pytest -v
     ```
 
-    * `vm` - Displays specific test cases under custom marker in verbose mode. The default `smoke` test requires your 
-    flask app to be running for the smoke test to working. 
-
-    ```
-    pytest -vm smoke
-    ```
-   
 4. To run the web application
    ```
    flask run
-   ```   
+   ```
 
 ## Python Packages
 

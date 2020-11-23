@@ -1,11 +1,6 @@
-import requests
-import pytest
+def test_load_homepage(app, client):
+    """Start page"""
 
-url = "http://localhost:5000/"
-
-
-@pytest.mark.smoke
-def test_home_page():
-    response = requests.get(url)
-
-    response.status_code == 200
+    response = client.get('/')
+    assert response.status_code == 200
+    assert b"Welcome to the Login Form Demo" in response.data
