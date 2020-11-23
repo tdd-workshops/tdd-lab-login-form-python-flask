@@ -1,0 +1,11 @@
+ports:
+  - port: 5000
+    onOpen: open-preview
+
+tasks:
+  - name: Run App
+    init: python3 -m pip install -r requirements.txt
+    command: flask run
+  - name: Test
+    init: python3 -m pip install -r requirements.txt
+    command: pytest -m smoke
