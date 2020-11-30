@@ -85,7 +85,7 @@ Open this folder in your terminal app. And run these commands in the terminal.
 
     Sign up for new user account.
 
-4. `POST /users`
+4. `POST /signin`
 
     This is how you login to the app. You will need to login with `email` and `password`.
 

@@ -11,7 +11,7 @@ app = Flask(__name__)
 def home_page(title='Welcome to the Login Form Demo!'):
     return render_template('login.html', title=title)
 
-@app.route('/users', methods=['GET', 'POST'])
+@app.route('/signin', methods=['GET', 'POST'])
 def login_page(title='Login Demo'):
     error = ''
 
@@ -24,7 +24,7 @@ def login_page(title='Login Demo'):
 
         else:
             error = 'Invalid username/password'
-            return render_template('404.html', error=error, title=title)
+            return render_template('login.html', errorMsg=error, title=title)
 
 
 @app.route('/users/logout')
@@ -57,11 +57,11 @@ def signup_page(title='Signup Page'):
                 return redirect('/users/welcome')
         else:
             error = 'Invalid user registration'
-            return render_template('404.html', error=error, title=title)
+            return render_template('signup.html', errorMsg=error, title=title)
 
 
 @app.route('/users/welcome')
-def welcome_page(title='Welcome Page'):
+def welcome_page(title='Welcome back!'):
     error = ''
 
     return render_template('welcome.html', error=error, title=title)

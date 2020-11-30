@@ -4,3 +4,63 @@ def test_load_homepage(app, client):
     response = client.get('/')
     assert response.status_code == 200
     assert b"Welcome to the Login Form Demo" in response.data
+
+
+def test_signup_page(app, client):
+    """Signup page"""
+
+    response = client.get('/signup')
+    assert response.status_code == 200
+    assert b"Signup for an account" in response.data
+
+
+def test_create_user_account(app, client):
+    """Create user account"""
+
+    response = client.post('/signup', data=dict(
+        username='demo1',
+        password='xxx',
+        password_confirm='xxx',
+        email='demo1@example.com'
+    ), follow_redirects=True)
+
+    assert response.status_code == 200
+    assert b"Welcome back" in response.data
+
+
+def test_create_with_mismatched_password(app, client):
+    """Invalid signup details"""
+
+    response = client.post('/signup', data=dict(
+        username='demo1',
+        password='xxx',
+        password_confirm='xxx1',
+        email='demo1@example.com'
+    ), follow_redirects=True)
+
+    assert response.status_code == 200
+    assert b"Invalid user registration" in response.data
+
+
+def test_valid_login(app, client):
+    """Valid login details"""
+
+    response = client.post('/signin', data=dict(
+        email='demo@example.com',
+        password='demo1234',
+    ), follow_redirects=True)
+
+    assert response.status_code == 200
+    assert b"Welcome back" in response.data
+
+
+def test_invalid_login(app, client):
+    """Invalid login details"""
+
+    response = client.post('/signin', data=dict(
+        email='wrong@example.com',
+        password='xxx',
+    ), follow_redirects=True)
+
+    assert response.status_code == 200
+    assert b"Invalid username/password" in response.data
