@@ -4,8 +4,9 @@ from flask import render_template
 import csv
 import os
 
-app = Flask(__name__)
+import db
 
+app = Flask(__name__)
 
 @app.route('/')
 def home_page(title='Welcome to the Login Form Demo!'):
@@ -19,7 +20,8 @@ def login_page(title='Login Demo'):
         return render_template('login.html', error=error, title=title)
 
     elif request.method == 'POST':
-        if request.form['email'] == 'demo@example.com' and request.form['password'] == 'demo1234':
+        if any(request.form['email'] == email and request.form['password'] == password
+                for _, email, password in db.get_all_employees()):
             return redirect('/users/welcome')
 
         else:
@@ -37,9 +39,6 @@ def logout_page(title='Logout Page'):
 @app.route('/signup', methods=['GET', 'POST'])
 def signup_page(title='Signup Page'):
     error = ''
-    root = os.path.dirname(os.path.realpath(__file__))
-    directory = 'db'
-    filename = 'user_db.csv'
     user_data = {}
 
     if request.method == 'GET':
@@ -50,11 +49,9 @@ def signup_page(title='Signup Page'):
                 request.form['password'] == request.form['password_confirm']:
             user_data = dict(request.form)
 
-            with open(f'{root}/{directory}/{filename}', mode='w') as employee_file:
-                employee_writer = csv.writer(employee_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                employee_writer.writerow([user_data['username'], user_data['email'], user_data['password']])
+            db.insert_employee(user_data['username'], user_data['email'], user_data['password'])
 
-                return redirect('/users/welcome')
+            return redirect('/users/welcome')
         else:
             error = 'Invalid user registration'
             return render_template('signup.html', errorMsg=error, title=title)
